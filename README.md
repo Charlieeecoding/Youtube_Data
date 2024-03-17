@@ -7,7 +7,7 @@ Hope you will enjoy while you are reading, thank you!!
 Details of this project: 
 I am trying to get the channel information from Youtube by calling the Youtube API, and gather data about the channel - NFL by using Python. I may do little data cleaning before saving as a CSV file for bettering reviewing and understanding on the data set. 
 
-After saving as a CSV file, it will be imported to the SQL database. (still deciding which SQL database to be used...) 
+After saving as a CSV file, it will be imported to the Microsoft SQL database (MSSQL). 
 
 Then, I will perform a migration from on-prem SQL database to Cloud database - Azure. (Or simply just connect between the on-prem database and the cloud database) 
 
