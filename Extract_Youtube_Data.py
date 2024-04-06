@@ -179,12 +179,14 @@ def get_playlist_videos(youtube, playlist_id):
 
             for item in playlist_items_response['items']:
                 video_id = item['snippet']['resourceId']['videoId']
+                playlist_id = item['snippet']['playlistId']
                 video_title = item['snippet']['title']
                 video_publish_date = item['snippet']['publishedAt']
                 video_description = item['snippet']['description']
 
                 video_data = {
                     'Video ID': video_id,
+                    'Playlist ID': playlist_id,
                     'Title': video_title,
                     'Publish Date': video_publish_date,
                     'Description': video_description
@@ -210,7 +212,7 @@ def get_playlist_videos(youtube, playlist_id):
 # Save all videos from all playlist IDs into csv file
 def save_videos_to_csv(all_videos, video_filename):
     with open(video_filename, 'w', newline='', encoding='utf-8') as file:
-        writer = csv.DictWriter(file, fieldnames=['Video ID', 'Title', 'Publish Date', 'Description'])
+        writer = csv.DictWriter(file, fieldnames=['Video ID', 'Playlist ID', 'Title', 'Publish Date', 'Description'])
         writer.writeheader()
         writer.writerows(all_videos)
 
