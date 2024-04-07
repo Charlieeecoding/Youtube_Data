@@ -10,8 +10,11 @@ I am trying to get the channel information from Youtube by calling the Youtube A
 After saving as a CSV file, it will be imported to the Microsoft SQL database (MSSQL). 
 
 Then, I will perform a migration from on-prem SQL database to Cloud database - Azure. (Or simply just connect between the on-prem database and the cloud database) 
+  Created data pipeline in Azure data factory
 
-ETL will be performed in Azure, try to create more than one table for reporting. 
+Between each step of ETL, datasets will be store in Azure Data Lake Gen2
+
+ETL will be performed in Azure DataBrick to analyze the data 
 
 At last, Power Bi will be used for presenting the data from Azure, and just to show some insights and reporting the summary of the Youtube channel - NFL. 
 
