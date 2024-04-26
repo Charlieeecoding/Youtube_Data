@@ -66,7 +66,7 @@ def get_channel_info_to_csv(youtube, channel_id, info_csv_file):
 
     file_exists = os.path.isfile(info_csv_file)
 
-    with open(info_csv_file, 'a', newline='', encoding='utf-8') as file:
+    with open(info_csv_file, 'w', newline='', encoding='utf-8') as file:
         writer = csv.DictWriter(file, fieldnames=csv_columns)
 
         if not file_exists:
