@@ -68,9 +68,7 @@ def get_channel_info_to_csv(youtube, channel_id, info_csv_file):
 
     with open(info_csv_file, 'w', newline='', encoding='utf-8') as file:
         writer = csv.DictWriter(file, fieldnames=csv_columns)
-
-        if not file_exists:
-            writer.writeheader()
+        writer.writeheader()
 
         writer.writerow({
             'Channel Name':         str(channel_info['snippet']['title']),
