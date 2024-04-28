@@ -62,7 +62,7 @@ def get_channel_info_to_csv(youtube, channel_id, info_csv_file):
     print('Saving informaiton to csv file...')
     print()
 
-    csv_columns = ['Channel Name', 'Channel ID', 'Published At', 'Subscriber Count', 'Video Count', 'View Count', 'Description', 'Log Time']
+    csv_columns = ['CHANNEL_NAME', 'CHANNEL_ID', 'PUBLISHED_AT', 'SUBSCRIBER_COUNT', 'VIDEO_COUNT', 'VIEW_COUNT', 'DESCRIPTION', 'LOG_TIME']
 
     file_exists = os.path.isfile(info_csv_file)
 
@@ -71,14 +71,14 @@ def get_channel_info_to_csv(youtube, channel_id, info_csv_file):
         writer.writeheader()
 
         writer.writerow({
-            'Channel Name':         str(channel_info['snippet']['title']),
-            'Channel ID':           str(channel_info['id']),
-            'Published At':         str(channel_info['snippet']['publishedAt']),
-            'Subscriber Count':     str(channel_info['statistics']['subscriberCount']),
-            'Video Count':          str(channel_info['statistics']['videoCount']),
-            'View Count':           str(channel_info['statistics']['viewCount']),
-            'Description':          str(channel_info['snippet']['description']), 
-            'Log Time':             datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+            'CHANNEL_NAME':         str(channel_info['snippet']['title']),
+            'CHANNEL_ID':           str(channel_info['id']),
+            'PUBLISHED_AT':         str(channel_info['snippet']['publishedAt']),
+            'SUBSCRIBER_COUNT':     str(channel_info['statistics']['subscriberCount']),
+            'VIDEO_COUNT':          str(channel_info['statistics']['videoCount']),
+            'VIEW_COUNT':           str(channel_info['statistics']['viewCount']),
+            'DESCRIPTION':          str(channel_info['snippet']['description']), 
+            'LOG_TIME':             datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         })
 
     return response['items'][0]  # Use index [0] to access the first item
@@ -92,7 +92,7 @@ channel_info = get_channel_info_to_csv(youtube, channel_id, info_csv_file)
 # getting all playlist IDs from NFL channel, and save into csv file
 def save_playlists_to_csv(playlist_ids, playlist_filename):
     with open(playlist_filename, 'w', newline='', encoding='utf-8') as file:
-        writer = csv.DictWriter(file, fieldnames=['Playlist ID', 'Title', 'Publish Date', 'Item Count'])
+        writer = csv.DictWriter(file, fieldnames=['PLAYLIST_ID', 'TITLE', 'PUBLISH_DATE', 'ITEM_COUNT'])
         writer.writeheader()
         writer.writerows(playlist_ids)
 
@@ -122,10 +122,10 @@ def get_youtube_playlists(api_key, channel_id):
                 playlist_item_count = playlist['contentDetails']['itemCount']
 
                 playlist_data = {
-                    'Playlist ID': playlist_id,
-                    'Title': playlist_title,
-                    'Publish Date': playlist_publish_date,
-                    'Item Count': playlist_item_count
+                    'PLAYLIST_ID': playlist_id,
+                    'TITLE': playlist_title,
+                    'PUBLISH_DATE': playlist_publish_date,
+                    'ITEM_COUNT': playlist_item_count
                 }
 
                 playlists.append(playlist_data)
@@ -183,11 +183,11 @@ def get_playlist_videos(youtube, playlist_id):
                 video_description = item['snippet']['description']
 
                 video_data = {
-                    'Video ID': video_id,
-                    'Playlist ID': playlist_id,
-                    'Title': video_title,
-                    'Publish Date': video_publish_date,
-                    'Description': video_description
+                    'VIDEO_ID': video_id,
+                    'PLAYLIST_ID': playlist_id,
+                    'TITLE': video_title,
+                    'PUBLISH_DATE': video_publish_date,
+                    'DESCRIPTION': video_description
                 }
 
                 videos.append(video_data)
@@ -210,7 +210,7 @@ def get_playlist_videos(youtube, playlist_id):
 # Save all videos from all playlist IDs into csv file
 def save_videos_to_csv(all_videos, video_filename):
     with open(video_filename, 'w', newline='', encoding='utf-8') as file:
-        writer = csv.DictWriter(file, fieldnames=['Video ID', 'Playlist ID', 'Title', 'Publish Date', 'Description'])
+        writer = csv.DictWriter(file, fieldnames=['VIDEO_ID', 'PLAYLIST_ID', 'TITLE', 'PUBLISH_DATE', 'DESCRIPTION'])
         writer.writeheader()
         writer.writerows(all_videos)
 
